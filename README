@@ -6,7 +6,7 @@ blog.opensecurityresearch.com
 These are various patches to work with Public Safety Bands.
 It may include 4.9ghz, 700mhz or others.. 
 
-4.9ghz/compat-wireless-3.3-1-BRAD-20120703-2.patch 
+4.9ghz/compat-wireless-3.3-1_ath5k-49GHZ+BWMODE.patch
 
 	This enables the ath5k drivers to respect 4.9ghz
 	and various channel widths. It leverages some 
@@ -14,7 +14,7 @@ It may include 4.9ghz, 700mhz or others..
 	mentioned in the references below. 
 
 	to install, just download compat-wireless-3.3-1
-	and patch -p1 < patch. See install.sh for more 
+	and patch -p1 < patch. See 49ghz_install.sh for more 
 	info
 
 	Invoke with "modprobe ath5k default_bwmode=2"
@@ -29,7 +29,7 @@ It may include 4.9ghz, 700mhz or others..
 
 	Kismet configuration to work with the patch above
 
-4.9ghz/pkg_install.sh
+4.9ghz/49ghz_install.sh
 
 	This is a script that is used in a private bundle. 
 	it may be useful to see what needs to be run to
