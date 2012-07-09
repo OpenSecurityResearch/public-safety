@@ -5,7 +5,7 @@ CRDA_VER="crda-1.1.2"
 REGDB_VER="wireless-regdb-2011.04.28"
 
 DB_VER="db-ReturnTrue.txt"
-KIS_VER="kismet-ReturnTrue.txt"
+KIS_VER="kismet-ReturnTrue.conf"
 PATCH_NAME="compat-wireless-3.3-1_ath5k-49GHZ+BWMODE.patch"
 
 mount -o remount,rw /cdrom
