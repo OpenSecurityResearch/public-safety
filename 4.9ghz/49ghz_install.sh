@@ -15,7 +15,7 @@ cd $RUN_DIR
 
 if [ ! -f $PATCH_NAME ]; then
 	echo "[!] Can't find $PATCH_NAME! ..Attempting to download"
-	https://raw.github.com/brad-anton/public-safety/master/4.9ghz/$PATCH_NAME
+	https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$PATCH_NAME
 fi
 if [ ! -f $PATCH_NAME ]; then
 	echo "[!] Something's wrong - can't find $PATCH_NAME"
@@ -61,6 +61,15 @@ fi
 tar -jxf $REGDB_VER.tar.bz2
 cd $RUN_DIR/$REGDB_VER
 mv db.txt db.orig
+
+if [ ! -f $DB_VER ]; then
+        echo "[!] Can't find $DB_VER! ..Attempting to download"
+	cd $RUN_DIR
+        https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$DB_VER
+	cd $RUN_DIR/$REGDB_VER
+fi
+
+
 cp $RUN_DIR/$DB_VER db.txt 
 
 make
@@ -163,6 +172,14 @@ else
 		make dep
 		make 
 		make install
+
+		if [ ! -f $KIS_VER ]; then
+		        echo "[!] Can't find $KIS_VER! ..Attempting to download"
+			cd $RUN_DIR
+		        https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$KIS_VER
+		fi
+
+
 		echo "[+] Copying over kismet.conf"
 		sudo cp $RUN_DIR/$KIS_VER /usr/local/etc/kismet.conf
 
