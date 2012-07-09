@@ -38,10 +38,13 @@ if [ -d $RUN_DIR/packages ]; then
 	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ -f install
 	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ install python-m2crypto libssl-dev build-essential
 else
-	echo "[!] Could not find $RUN_DIR/packages/.. installing from internet"
+	echo "[!] Could not find $RUN_DIR/packages/.. installing from internet and caching for later offline install"
 	sudo apt-get update
 	sudo apt-get -y -f install
-	sudo apt-get -y install python-m2crypto libssl-dev build-essential libnl-dev
+	mkdir -p $RUN_DIR/packages/archives/partial
+	touch  $RUN_DIR/packages/archives/lock
+	sudo apt-get -y -o=dir::cache=$RUN_DIR/packages/ -d install python-m2crypto libssl-dev build-essential libnl-dev
+	sudo apt-get -y -o=dir::cache=$RUN_DIR/packages/ install python-m2crypto libssl-dev build-essential libnl-dev
 fi
 
 cd $RUN_DIR
@@ -160,9 +163,11 @@ if [ -f $RUN_DIR/packages/kismet_svn-3505-1_i386.deb ]; then
 	dpkg --install $RUN_DIR/packages/kismet_svn-3505-1_i386.deb
 else 
 	echo "[+] Could not find pre-compiled kismet.."
-	echo "[+] Attempting to fetch kismet via git"
-	cd $RUN_DIR
-	git clone https://www.kismetwireless.net/kismet.git
+	if [ ! -d kismet ]; then 
+		echo "[+] Attempting to fetch kismet via git"
+		cd $RUN_DIR
+		git clone https://www.kismetwireless.net/kismet.git
+	fi
 	if [ -d $RUN_DIR/kismet ]; then 
 		echo "[+] Uninstalling BT5R2's kismet"
 		dpkg -r kismet
