@@ -186,6 +186,7 @@ else
 
 
 		echo "[+] Copying over kismet.conf"
+		sudo mv /usr/local/etc/kismet.conf /usr/local/etc/kismet.conf.old
 		sudo cp $RUN_DIR/$KIS_VER /usr/local/etc/kismet.conf
 
 	else
