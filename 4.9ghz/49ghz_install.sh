@@ -36,7 +36,7 @@ fi
 
 if [ -d $RUN_DIR/packages ]; then
 	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ -f install
-	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ install python-m2crypto libssl-dev build-essential
+	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ install python-m2crypto libssl-dev build-essential libnl-dev
 else
 	echo "[!] Could not find $RUN_DIR/packages/.. installing from internet and caching for later offline install"
 	sudo apt-get update
@@ -65,7 +65,7 @@ tar -jxf $REGDB_VER.tar.bz2
 cd $RUN_DIR/$REGDB_VER
 mv db.txt db.orig
 
-if [ ! -f $DB_VER ]; then
+if [ ! -f $RUN_DIR/$DB_VER ]; then
         echo "[!] Can't find $DB_VER! ..Attempting to download"
 	cd $RUN_DIR
         wget https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$DB_VER
@@ -178,7 +178,7 @@ else
 		make 
 		make install
 
-		if [ ! -f $KIS_VER ]; then
+		if [ ! -f $RUN_DIR/$KIS_VER ]; then
 		        echo "[!] Can't find $KIS_VER! ..Attempting to download"
 			cd $RUN_DIR
 		        wget https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$KIS_VER
