@@ -1,12 +1,12 @@
 RUN_DIR=`pwd`
 
-COMPAT_VER=compat-wireless-3.3-1
-CRDA_VER=crda-1.1.2
-REGDB_VER=wireless-regdb-2011.04.28
+COMPAT_VER="compat-wireless-3.3-1"
+CRDA_VER="crda-1.1.2"
+REGDB_VER="wireless-regdb-2011.04.28"
 
-DB_VER=db-ReturnTrue.txt
-KIS_VER=kismet-ReturnTrue.txt
-PATCH_NAME=compat-wireless-3.3-1_ath5k-49GHZ+BWMODE.patch
+DB_VER="db-ReturnTrue.txt"
+KIS_VER="kismet-ReturnTrue.txt"
+PATCH_NAME="compat-wireless-3.3-1_ath5k-49GHZ+BWMODE.patch"
 
 mount -o remount,rw /cdrom
 
@@ -15,7 +15,7 @@ cd $RUN_DIR
 
 if [ ! -f $PATCH_NAME ]; then
 	echo "[!] Can't find $PATCH_NAME! ..Attempting to download"
-	https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$PATCH_NAME
+	wget https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$PATCH_NAME
 fi
 if [ ! -f $PATCH_NAME ]; then
 	echo "[!] Something's wrong - can't find $PATCH_NAME"
@@ -68,7 +68,7 @@ mv db.txt db.orig
 if [ ! -f $DB_VER ]; then
         echo "[!] Can't find $DB_VER! ..Attempting to download"
 	cd $RUN_DIR
-        https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$DB_VER
+        wget https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$DB_VER
 	cd $RUN_DIR/$REGDB_VER
 fi
 
@@ -181,7 +181,7 @@ else
 		if [ ! -f $KIS_VER ]; then
 		        echo "[!] Can't find $KIS_VER! ..Attempting to download"
 			cd $RUN_DIR
-		        https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$KIS_VER
+		        wget https://raw.github.com/OpenSecurityResearch/public-safety/master/4.9ghz/$KIS_VER
 		fi
 
 
