@@ -42,7 +42,7 @@ diff -urN compat-wireless-3.3-1/drivers/net/wireless/ath/ath5k/base.c compat-wir
  		/* 802.11j 4.9GHz (20MHz) */
 -		(chan == 184 || chan == 188 || chan == 192 || chan == 196));
 +                /* BRAD: Opening up a little more */
-+                (chan >= 182 && chan <= 198 ));
++                (chan >= 165 && chan <= 200 ));
  }
  
  static unsigned int
