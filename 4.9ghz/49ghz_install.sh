@@ -37,6 +37,7 @@ fi
 if [ -d $RUN_DIR/packages ]; then
 	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ -f install
 	sudo apt-get -o=dir::cache=$RUN_DIR/packages/ install python-m2crypto libssl-dev build-essential libnl-dev
+	sudo dpkg --install $RUN_DIR/packages/archives/*.deb
 else
 	echo "[!] Could not find $RUN_DIR/packages/.. installing from internet and caching for later offline install"
 	sudo apt-get update
@@ -185,15 +186,16 @@ else
 		fi
 
 
-		echo "[+] Copying over kismet.conf"
-		sudo mv /usr/local/etc/kismet.conf /usr/local/etc/kismet.conf.old
-		sudo cp $RUN_DIR/$KIS_VER /usr/local/etc/kismet.conf
-
 	else
 		echo "[!] Looking like something went wrong when downloading kismet"
 		echo "[!] The driver should be installed, its highly recommended that you use the latest kismet version"
 	fi
 fi
+
+echo "[+] Copying over kismet.conf"
+sudo mv /usr/local/etc/kismet.conf /usr/local/etc/kismet.conf.old
+sudo cp $RUN_DIR/$KIS_VER /usr/local/etc/kismet.conf
+
 
 cd $RUN_DIR
 
